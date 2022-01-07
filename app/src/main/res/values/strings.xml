@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">fuel cal</string>
+    <string name="action_settings">Settings</string>
+    <string name="fuel_price">Fuel Price</string>
+    <string name="distance">Distance</string>
+    <string name="fuel_consumption">Fuel Consumption</string>
+    <string name="trip_cost">Trip Cost</string>
+    <string name="£">£</string>
+    <string name="mpg">mpg</string>
+    <string name="miles">miles</string>
+
+</resources>
