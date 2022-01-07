@@ -5,8 +5,10 @@
     <string name="distance">Distance</string>
     <string name="fuel_consumption">Fuel Consumption</string>
     <string name="trip_cost">Trip Cost</string>
-    <string name="£">£</string>
+    <string name="pound">&#xa3;</string>
     <string name="mpg">mpg</string>
     <string name="miles">miles</string>
+    <string name="calculate">Calculate</string>
+    <string name="litre">/Litre</string>
 
 </resources>
