@@ -35,7 +35,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     private double gallonToLitre = 4.54609;
 
-    private static final DecimalFormat df = new DecimalFormat("#,###.00");
+    private static final DecimalFormat df = new DecimalFormat("#,##0.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
