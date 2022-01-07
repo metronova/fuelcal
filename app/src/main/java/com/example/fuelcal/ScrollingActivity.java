@@ -16,11 +16,15 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import com.example.fuelcal.databinding.ActivityScrollingBinding;
 
 public class ScrollingActivity extends AppCompatActivity {
 
     private ActivityScrollingBinding binding;
+
+
 
 
     private TextView fuel_price_input;
@@ -30,6 +34,8 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
     private double gallonToLitre = 4.54609;
+
+    private static final DecimalFormat df = new DecimalFormat("#,###.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +49,15 @@ public class ScrollingActivity extends AppCompatActivity {
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
         toolBarLayout.setTitle(getTitle());
 
-        FloatingActionButton fab = binding.fab;
+        /*FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+
 
 
         // Locate the UI widgets.
@@ -61,13 +68,13 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -116,17 +123,18 @@ public class ScrollingActivity extends AppCompatActivity {
         }
 
         double tripCost = 0;
-
+        String tripCostString = "";
 
         try {
             tripCost = tripCost(fuel_price_input_double, distance_input_double, fuel_consumption_input_double);
+
+            tripCostString = df.format(tripCost);
         } catch (Exception e) {
             System.out.println(e);
 
         }
 
 
-        String tripCostString = Double.toString(tripCost);
         trip_cost_output.setText(tripCostString);
 
 
