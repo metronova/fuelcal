@@ -143,8 +143,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal"
-                android:editable="false"/>
+                android:enabled="false"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/grey"/>
 
 
         </LinearLayout>
