@@ -11,8 +11,8 @@
     <string name="calculate">Calculate</string>
     <string name="litre">/Litre</string>
     <string-array name="unit_spinner">
-        <item>£/Litre</item>
         <item>p/Litre</item>
+        <item>£/Litre</item>
     </string-array>
 
 </resources>

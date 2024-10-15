@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -28,6 +29,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
     private TextView fuel_price_input;
+    private Spinner spinner_input;
     private TextView distance_input;
     private TextView fuel_consumption_input;
     private TextView trip_cost_output;
@@ -62,6 +64,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         // Locate the UI widgets.
         fuel_price_input = (TextView) findViewById(R.id.fuel_price_input);
+        spinner_input = (Spinner) findViewById(R.id.spinner_input);
         distance_input = (TextView) findViewById(R.id.distance_input);
         fuel_consumption_input = (TextView) findViewById(R.id.fuel_consumption_input);
         trip_cost_output = (TextView) findViewById(R.id.trip_cost_output);
@@ -115,6 +118,17 @@ public class ScrollingActivity extends AppCompatActivity {
         if (fuel_price_input.getText().toString().equals("") == false) {
             fuel_price_input_double = Double.parseDouble(fuel_price_input.getText().toString());
         }
+
+        if(spinner_input.getSelectedItem().toString().equals("p/Litre")){
+            fuel_price_input_double = fuel_price_input_double / 100;
+        }
+
+        if(spinner_input.getSelectedItem().toString().equals("£/Litre")){
+            fuel_price_input_double = fuel_price_input_double;
+        }
+
+
+
         if (distance_input.getText().toString().equals("") == false) {
             distance_input_double = Double.parseDouble(distance_input.getText().toString());
         }

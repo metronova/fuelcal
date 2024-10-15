@@ -42,7 +42,7 @@
                 android:maxLength="10" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinner_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
