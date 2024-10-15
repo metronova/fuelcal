@@ -42,11 +42,11 @@
                 android:maxLength="10" />
 
             <Spinner
-                android:id="@+id/spinner_input"
+                android:id="@+id/price_unit_spinner_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:entries="@array/unit_spinner" />
+                android:entries="@array/price_unit_spinner" />
 
 
         </LinearLayout>
@@ -102,11 +102,13 @@
                 android:inputType="numberDecimal"
                 android:maxLength="10"/>
 
-            <TextView
-                android:id="@+id/miles"
+            <Spinner
+                android:id="@+id/distance_unit_spinner_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/miles" />
+                android:layout_weight="1"
+                android:entries="@array/distance_unit_spinner" />
+
 
         </LinearLayout>
         <Button xmlns:android="http://schemas.android.com/apk/res/android"

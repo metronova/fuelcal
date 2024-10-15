@@ -10,9 +10,13 @@
     <string name="miles">miles</string>
     <string name="calculate">Calculate</string>
     <string name="litre">/Litre</string>
-    <string-array name="unit_spinner">
+    <string-array name="price_unit_spinner">
         <item>p/Litre</item>
         <item>£/Litre</item>
+    </string-array>
+    <string-array name="distance_unit_spinner">
+        <item>Miles</item>
+        <item>Kilometer</item>
     </string-array>
 
 </resources>

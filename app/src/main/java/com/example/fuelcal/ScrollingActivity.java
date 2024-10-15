@@ -3,17 +3,12 @@ package com.example.fuelcal;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,13 +24,15 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
     private TextView fuel_price_input;
-    private Spinner spinner_input;
+    private Spinner price_unit_spinner_input;
+    private Spinner distance_unit_spinner_input;
     private TextView distance_input;
     private TextView fuel_consumption_input;
     private TextView trip_cost_output;
 
 
     private double gallonToLitre = 4.54609;
+    private double milesToKilometer = 1.609344;
 
     private static final DecimalFormat df = new DecimalFormat("#,##0.##");
 
@@ -64,7 +61,8 @@ public class ScrollingActivity extends AppCompatActivity {
 
         // Locate the UI widgets.
         fuel_price_input = (TextView) findViewById(R.id.fuel_price_input);
-        spinner_input = (Spinner) findViewById(R.id.spinner_input);
+        price_unit_spinner_input = (Spinner) findViewById(R.id.price_unit_spinner_input);
+        distance_unit_spinner_input = (Spinner) findViewById(R.id.distance_unit_spinner_input);
         distance_input = (TextView) findViewById(R.id.distance_input);
         fuel_consumption_input = (TextView) findViewById(R.id.fuel_consumption_input);
         trip_cost_output = (TextView) findViewById(R.id.trip_cost_output);
@@ -114,24 +112,37 @@ public class ScrollingActivity extends AppCompatActivity {
         Double distance_input_double = 0.0;
         Double fuel_consumption_input_double = 0.0;
 
-
+// fuel_price_unit
         if (fuel_price_input.getText().toString().equals("") == false) {
             fuel_price_input_double = Double.parseDouble(fuel_price_input.getText().toString());
         }
 
-        if(spinner_input.getSelectedItem().toString().equals("p/Litre")){
+        if(price_unit_spinner_input.getSelectedItem().toString().equals("p/Litre")){
             fuel_price_input_double = fuel_price_input_double / 100;
         }
 
-        if(spinner_input.getSelectedItem().toString().equals("£/Litre")){
+        if(price_unit_spinner_input.getSelectedItem().toString().equals("£/Litre")){
             fuel_price_input_double = fuel_price_input_double;
         }
 
 
-
+//distance_unit
         if (distance_input.getText().toString().equals("") == false) {
             distance_input_double = Double.parseDouble(distance_input.getText().toString());
         }
+
+        if(distance_unit_spinner_input.getSelectedItem().toString().equals("Miles")){
+            distance_input_double = distance_input_double;
+        }
+
+        if(distance_unit_spinner_input.getSelectedItem().toString().equals("Kilometer")){
+            distance_input_double = distance_input_double / milesToKilometer;
+        }
+
+
+
+
+
         if (fuel_consumption_input.getText().toString().equals("") == false) {
             fuel_consumption_input_double = Double.parseDouble(fuel_consumption_input.getText().toString());
         }
