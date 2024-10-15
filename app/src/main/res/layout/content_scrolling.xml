@@ -32,12 +32,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/pound"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pound" />
-
 
             <EditText
                 android:id="@+id/fuel_price_input"
@@ -46,12 +40,6 @@
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:maxLength="10" />
-
-            <TextView
-                android:id="@+id/litre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/litre" />
 
             <Spinner
                 android:id="@+id/spinner"
