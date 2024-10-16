@@ -18,5 +18,8 @@
         <item>Miles</item>
         <item>Kilometer</item>
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="fuel_calculator_tab">Calculator</string>
+    <string name="fuel_price_tab">Price</string>
 
 </resources>

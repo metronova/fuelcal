@@ -6,6 +6,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import android.view.View;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import java.text.DecimalFormat;
 
 import com.example.fuelcal.databinding.ActivityScrollingBinding;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class FuelCalActivity extends Fragment {
 
     private ActivityScrollingBinding binding;
 
@@ -37,16 +38,16 @@ public class ScrollingActivity extends AppCompatActivity {
     private static final DecimalFormat df = new DecimalFormat("#,##0.##");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityScrollingBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        //setContentView(binding.getRoot());
 
         Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle(getTitle());
+        //toolBarLayout.setTitle(getTitle());
 
         /*FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +61,12 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
         // Locate the UI widgets.
-        fuel_price_input = (TextView) findViewById(R.id.fuel_price_input);
-        price_unit_spinner_input = (Spinner) findViewById(R.id.price_unit_spinner_input);
-        distance_unit_spinner_input = (Spinner) findViewById(R.id.distance_unit_spinner_input);
-        distance_input = (TextView) findViewById(R.id.distance_input);
-        fuel_consumption_input = (TextView) findViewById(R.id.fuel_consumption_input);
-        trip_cost_output = (TextView) findViewById(R.id.trip_cost_output);
+        fuel_price_input = (TextView)getView().findViewById(R.id.fuel_price_input);
+        price_unit_spinner_input = (Spinner)getView().findViewById(R.id.price_unit_spinner_input);
+        distance_unit_spinner_input = (Spinner)getView().findViewById(R.id.distance_unit_spinner_input);
+        distance_input = (TextView)getView().findViewById(R.id.distance_input);
+        fuel_consumption_input = (TextView)getView().findViewById(R.id.fuel_consumption_input);
+        trip_cost_output = (TextView)getView().findViewById(R.id.trip_cost_output);
 
 
     }
