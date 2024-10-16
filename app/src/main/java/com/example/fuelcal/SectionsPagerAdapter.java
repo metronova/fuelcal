@@ -29,32 +29,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment.
 
        // return PlaceholderFragment.newInstance(position + 1);
-
         position += 1;
-
         if(position == 1){
-            Fragment ScrollingActivity = new FuelCalFragment();
-            //Fragment ScrollingActivity = new Fragment();
-
-
-            return ScrollingActivity;
-
+            return new FuelCalFragment();
         }
-
         if(position == 2){
-            //Fragment ScrollingActivity = new Fragment();
-            Fragment ScrollingActivity = new Fragment();
-            return ScrollingActivity;
-
+            return new FuelPriceFragment();
         }
-
-        /*PlaceholderFragment fragment = new PlaceholderFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, 100);
-        fragment.setArguments(bundle);
-        return fragment;*/
-        Fragment ScrollingActivity = new Fragment();
-        return ScrollingActivity;
+        return new Fragment();
     }
 
     @Nullable
