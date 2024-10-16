@@ -15,10 +15,10 @@ import java.text.DecimalFormat;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
+ * Use the {@link FuelCalFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment extends Fragment {
+public class FuelCalFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,7 +55,7 @@ public class BlankFragment extends Fragment {
 
 
 
-    public BlankFragment() {
+    public FuelCalFragment() {
         // Required empty public constructor
     }
 
@@ -68,8 +68,8 @@ public class BlankFragment extends Fragment {
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String param1, String param2) {
-        BlankFragment fragment = new BlankFragment();
+    public static FuelCalFragment newInstance(String param1, String param2) {
+        FuelCalFragment fragment = new FuelCalFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -103,7 +103,7 @@ public class BlankFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        return inflater.inflate(R.layout.fuelcal_fragment, container, false);
 
     }
 

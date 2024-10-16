@@ -33,7 +33,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         position += 1;
 
         if(position == 1){
-            Fragment ScrollingActivity = new BlankFragment();
+            Fragment ScrollingActivity = new FuelCalFragment();
             //Fragment ScrollingActivity = new Fragment();
 
 
