@@ -49,7 +49,7 @@ public class FuelPriceFragment extends Fragment {
     DownloadManager downloadManager;
     long downloadReference;
 
-    private final static String BUS_STOP_JSON_URL = "https://data.etabus.gov.hk/v1/transport/kmb/stop";
+    private final static String BUS_STOP_JSON_URL = "https://storelocator.asda.com/fuel_prices_data.json";
     private final static String BUS_STOP_JSON_FILE_NAME = "stop/busStop";
     private final static String BUS_STOP_JSON_FILE_TMP_NAME = "stop/busStop_Tmp";
     private final static String JSON_SUFFIX = ".json";
