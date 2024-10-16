@@ -2,25 +2,38 @@ package com.example.fuelcal;
 
 import android.os.Bundle;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
-//import com.example.fuelcal.databinding.ActivityScrollingBinding;
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link BlankFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class BlankFragment extends Fragment {
 
-public class FuelCalActivity extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    //private ActivityScrollingBinding binding;
 
+
+
+
+
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
 
 
@@ -30,6 +43,7 @@ public class FuelCalActivity extends Fragment {
     private TextView distance_input;
     private TextView fuel_consumption_input;
     private TextView trip_cost_output;
+    private Button calculate_button;
 
 
     private double gallonToLitre = 4.54609;
@@ -37,63 +51,78 @@ public class FuelCalActivity extends Fragment {
 
     private static final DecimalFormat df = new DecimalFormat("#,##0.##");
 
+
+
+
+
+    public BlankFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment BlankFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static BlankFragment newInstance(String param1, String param2) {
+        BlankFragment fragment = new BlankFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //binding = ActivityScrollingBinding.inflate(getLayoutInflater());
-        //setContentView(binding.getRoot());
-
-        //Toolbar toolbar = binding.toolbar;
-        //setSupportActionBar(toolbar);
-        //CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        //toolBarLayout.setTitle(getTitle());
-
-        /*FloatingActionButton fab = binding.fab;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
 
 
 
-        // Locate the UI widgets.
+       //fuel_price_input = (TextView)getView().findViewById(R.id.fuel_price_input);
+        /*price_unit_spinner_input = (Spinner)getView().findViewById(R.id.price_unit_spinner_input);
+        distance_unit_spinner_input = (Spinner)getView().findViewById(R.id.distance_unit_spinner_input);
+        distance_input = (TextView)getView().findViewById(R.id.distance_input);
+        fuel_consumption_input = (TextView)getView().findViewById(R.id.fuel_consumption_input);
+        trip_cost_output = (TextView)getView().findViewById(R.id.trip_cost_output);*/
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_blank, container, false);
+
+    }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         fuel_price_input = (TextView)getView().findViewById(R.id.fuel_price_input);
         price_unit_spinner_input = (Spinner)getView().findViewById(R.id.price_unit_spinner_input);
         distance_unit_spinner_input = (Spinner)getView().findViewById(R.id.distance_unit_spinner_input);
         distance_input = (TextView)getView().findViewById(R.id.distance_input);
         fuel_consumption_input = (TextView)getView().findViewById(R.id.fuel_consumption_input);
         trip_cost_output = (TextView)getView().findViewById(R.id.trip_cost_output);
+        calculate_button = (Button)getView().findViewById(R.id.calculate);
 
-
+        calculate_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CalTripCost(view);
+            }
+        });
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
-    }*/
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-///////////////////////////////
-
 
     public double tripCost(double fuel_price_input, double distance_input,
                            double fuel_consumption_input) {
@@ -166,6 +195,3 @@ public class FuelCalActivity extends Fragment {
 
     }
 }
-
-
-
