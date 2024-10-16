@@ -4,11 +4,15 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +20,12 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,8 +56,8 @@ public class FuelPriceFragment extends Fragment {
     long downloadReference;
 
     private final static String BUS_STOP_JSON_URL = "https://storelocator.asda.com/fuel_prices_data.json";
-    private final static String BUS_STOP_JSON_FILE_NAME = "stop/busStop";
-    private final static String BUS_STOP_JSON_FILE_TMP_NAME = "stop/busStop_Tmp";
+    private final static String BUS_STOP_JSON_FILE_NAME = "asda/price_data";
+    private final static String BUS_STOP_JSON_FILE_TMP_NAME = "asda/price_data_tmp";
     private final static String JSON_SUFFIX = ".json";
 
 
@@ -109,8 +115,27 @@ public class FuelPriceFragment extends Fragment {
         checkDownloadStatusFunction(progressText, progressBar, BUS_STOP_JSON_FILE_TMP_NAME, BUS_STOP_JSON_FILE_NAME);
 
 
+        IntentFilter filter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                long reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                if (downloadReference == reference) {
+
+
+
+
+
+
+                }
+            }
+        };
+        requireActivity().registerReceiver(receiver, filter);
+
 
     }
+
+
 
 
     private void downloadJSON(String url, String title, String description, String subPath) {
