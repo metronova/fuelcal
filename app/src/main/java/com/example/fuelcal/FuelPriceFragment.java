@@ -24,9 +24,18 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -62,7 +71,8 @@ public class FuelPriceFragment extends Fragment {
 
 
     ProgressBar progressBar;
-    private TextView progressText;
+    TextView progressText;
+    TextView JSONTextView;
 
 
 
@@ -95,11 +105,13 @@ public class FuelPriceFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fuelprice_fragment, container, false);
     }
 
@@ -108,6 +120,7 @@ public class FuelPriceFragment extends Fragment {
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressText = (TextView) view.findViewById(R.id.progressText);
+        JSONTextView = (TextView) view.findViewById(R.id.JSONTextView);
 
 
 
@@ -122,9 +135,18 @@ public class FuelPriceFragment extends Fragment {
                 long reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 if (downloadReference == reference) {
 
+                    ArrayList<Object> listData = new ArrayList<Object>();
 
+                    try {
 
-
+                        convertJsonToArrayList(listData, BUS_STOP_JSON_FILE_NAME, JSONTextView);
+                    } catch (FileNotFoundException e) {
+                        //busStop1TextView.setText("Bus stop json not found");
+                        System.out.println("Bus stop json not found");
+                    } catch (Throwable e) {
+                        //busStop1TextView.setText(e.toString());
+                        System.out.println(e.toString());
+                    }
 
 
                 }
@@ -302,6 +324,58 @@ public class FuelPriceFragment extends Fragment {
         }
 
 
+    }
+
+
+    private void convertJsonToArrayList(ArrayList<Object> listData, String filename, TextView showTextView) throws Exception {
+        //https://stackoverflow.com/questions/31670076/android-download-and-store-json-so-app-can-work-offline
+
+
+        File filePath = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(filePath, filename);
+
+
+        FileInputStream fileStream = new FileInputStream(file);
+
+
+        String JSONString = convertStreamToString(fileStream);
+        //Make sure you close all streams.
+        fileStream.close();
+
+        //System.out.print(JSONString);
+
+        JSONObject result = new JSONObject(JSONString);
+
+
+        JSONArray jsonArray = result.getJSONArray("stations");
+        String timeStamp = result.getString("last_updated");
+
+        String dateTimeString = DateUtil.returnDatetimeString(timeStamp);
+        //showTextView.setText(dateTimeString);
+        showTextView.setText(timeStamp);
+
+
+        //Checking whether the JSON array has some value or not
+        if (jsonArray != null) {
+
+            //Iterating JSON array
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                //Adding each element of JSON array into ArrayList
+                listData.add(jsonArray.get(i));
+            }
+        }
+    }
+
+    private static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        reader.close();
+        return sb.toString();
     }
 
 
