@@ -123,6 +123,12 @@ public class FuelPriceFragment extends Fragment {
         JSONTextView = (TextView) view.findViewById(R.id.JSONTextView);
 
 
+        File filePath = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(filePath, "asda/price_data");
+
+        if (file.exists()) {
+            file.delete();
+        }
 
         downloadJSON(BUS_STOP_JSON_URL, "Bus Stop Data", "Bus Stop Data", BUS_STOP_JSON_FILE_NAME);
         checkDownloadStatusFunction(progressText, progressBar, BUS_STOP_JSON_FILE_TMP_NAME, BUS_STOP_JSON_FILE_NAME);
@@ -140,6 +146,12 @@ public class FuelPriceFragment extends Fragment {
                     try {
 
                         convertJsonToArrayList(listData, BUS_STOP_JSON_FILE_NAME, JSONTextView);
+                        for (int i = 0; i < listData.size(); i++) {
+                            /*System.out.println(listData.get(i).toString());
+                            for (int j = 0; j < listData.get(i).size(); i++) {
+
+                            }*/
+                        }
                     } catch (FileNotFoundException e) {
                         //busStop1TextView.setText("Bus stop json not found");
                         System.out.println("Bus stop json not found");
@@ -362,7 +374,20 @@ public class FuelPriceFragment extends Fragment {
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 //Adding each element of JSON array into ArrayList
-                listData.add(jsonArray.get(i));
+               // listData.add(jsonArray.get(i));
+                //System.out.println(jsonArray.get(i).toString());
+
+                JSONObject result2 = new JSONObject(jsonArray.get(i).toString());
+                System.out.println("site_id: " + result2.getString("site_id"));
+                System.out.println("brand: " + result2.getString("brand"));
+                System.out.println("address: " + result2.getString("address"));
+                System.out.println("postcode: " + result2.getString("postcode"));
+                System.out.println("location: " + result2.getString("location"));
+                System.out.println("prices: " + result2.getString("prices"));
+
+
+
+
             }
         }
     }
