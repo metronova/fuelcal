@@ -365,6 +365,7 @@ public class FuelPriceFragment extends Fragment {
         //String dateTimeString = DateUtil.returnDatetimeString(timeStamp);
         //showTextView.setText(dateTimeString);
         showTextView.setText(timeStamp);
+        showTextView.append("\n");
 
 
         //Checking whether the JSON array has some value or not
@@ -378,12 +379,24 @@ public class FuelPriceFragment extends Fragment {
                 //System.out.println(jsonArray.get(i).toString());
 
                 JSONObject result2 = new JSONObject(jsonArray.get(i).toString());
+
+
+
                 System.out.println("site_id: " + result2.getString("site_id"));
                 System.out.println("brand: " + result2.getString("brand"));
                 System.out.println("address: " + result2.getString("address"));
                 System.out.println("postcode: " + result2.getString("postcode"));
                 System.out.println("location: " + result2.getString("location"));
                 System.out.println("prices: " + result2.getString("prices"));
+
+                showTextView.append("\n");
+                showTextView.append("site_id: " + result2.getString("site_id") + "\n");
+                showTextView.append("brand: " + result2.getString("brand") + "\n");
+                showTextView.append("address: " + result2.getString("address") + "\n");
+                showTextView.append("postcode: " + result2.getString("postcode") + "\n");
+                showTextView.append("location: " + result2.getString("location") + "\n");
+                showTextView.append("prices: " + result2.getString("prices") + "\n");
+
 
 
 
