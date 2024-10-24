@@ -362,7 +362,7 @@ public class FuelPriceFragment extends Fragment {
         JSONArray jsonArray = result.getJSONArray("stations");
         String timeStamp = result.getString("last_updated");
 
-        String dateTimeString = DateUtil.returnDatetimeString(timeStamp);
+        //String dateTimeString = DateUtil.returnDatetimeString(timeStamp);
         //showTextView.setText(dateTimeString);
         showTextView.setText(timeStamp);
 
