@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,6 +75,9 @@ public class FuelPriceFragment extends Fragment {
     ProgressBar progressBar;
     TextView progressText;
     TextView JSONTextView;
+    TextView JSONTextView2;
+    RecyclerView recyclerView;
+    MyRecyclerViewAdapter adapter;
 
 
 
@@ -120,7 +125,13 @@ public class FuelPriceFragment extends Fragment {
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressText = (TextView) view.findViewById(R.id.progressText);
+
         JSONTextView = (TextView) view.findViewById(R.id.JSONTextView);
+        JSONTextView2 = (TextView) view.findViewById(R.id.JSONTextView2);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.RecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
 
 
         File filePath = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
@@ -145,13 +156,8 @@ public class FuelPriceFragment extends Fragment {
 
                     try {
 
-                        convertJsonToArrayList(listData, BUS_STOP_JSON_FILE_NAME, JSONTextView);
-                        for (int i = 0; i < listData.size(); i++) {
-                            /*System.out.println(listData.get(i).toString());
-                            for (int j = 0; j < listData.get(i).size(); i++) {
+                        convertJsonToArrayList(listData, BUS_STOP_JSON_FILE_NAME, JSONTextView, JSONTextView2);
 
-                            }*/
-                        }
                     } catch (FileNotFoundException e) {
                         //busStop1TextView.setText("Bus stop json not found");
                         System.out.println("Bus stop json not found");
@@ -339,7 +345,7 @@ public class FuelPriceFragment extends Fragment {
     }
 
 
-    private void convertJsonToArrayList(ArrayList<Object> listData, String filename, TextView showTextView) throws Exception {
+    private void convertJsonToArrayList(ArrayList<Object> listData, String filename, TextView showTextView, TextView showTextView2) throws Exception {
         //https://stackoverflow.com/questions/31670076/android-download-and-store-json-so-app-can-work-offline
 
 
@@ -365,7 +371,10 @@ public class FuelPriceFragment extends Fragment {
         //String dateTimeString = DateUtil.returnDatetimeString(timeStamp);
         //showTextView.setText(dateTimeString);
         showTextView.setText(timeStamp);
-        showTextView.append("\n");
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        showTextView2.setText("");
 
 
         //Checking whether the JSON array has some value or not
@@ -380,30 +389,43 @@ public class FuelPriceFragment extends Fragment {
 
                 JSONObject result2 = new JSONObject(jsonArray.get(i).toString());
 
+                String listString;
+
+                listString = "\n";
+                listString = listString + "site_id: " + result2.getString("site_id") + "\n";
+                listString = listString + "brand: " + result2.getString("brand") + "\n";
+                listString = listString + "address: " + result2.getString("address") + "\n";
+                listString = listString + "postcode: " + result2.getString("postcode") + "\n";
+                listString = listString + "location: " + result2.getString("location") + "\n";
+                listString = listString + "prices: " + result2.getString("prices") + "\n";
 
 
+/*
                 System.out.println("site_id: " + result2.getString("site_id"));
                 System.out.println("brand: " + result2.getString("brand"));
                 System.out.println("address: " + result2.getString("address"));
                 System.out.println("postcode: " + result2.getString("postcode"));
                 System.out.println("location: " + result2.getString("location"));
-                System.out.println("prices: " + result2.getString("prices"));
+                System.out.println("prices: " + result2.getString("prices"));*/
+/*
+                showTextView2.append("\n");
+                showTextView2.append("site_id: " + result2.getString("site_id") + "\n");
+                showTextView2.append("brand: " + result2.getString("brand") + "\n");
+                showTextView2.append("address: " + result2.getString("address") + "\n");
+                showTextView2.append("postcode: " + result2.getString("postcode") + "\n");
+                showTextView2.append("location: " + result2.getString("location") + "\n");
+                showTextView2.append("prices: " + result2.getString("prices") + "\n");*/
 
-                showTextView.append("\n");
-                showTextView.append("site_id: " + result2.getString("site_id") + "\n");
-                showTextView.append("brand: " + result2.getString("brand") + "\n");
-                showTextView.append("address: " + result2.getString("address") + "\n");
-                showTextView.append("postcode: " + result2.getString("postcode") + "\n");
-                showTextView.append("location: " + result2.getString("location") + "\n");
-                showTextView.append("prices: " + result2.getString("prices") + "\n");
-
-
-
-
+                arrayList.add(listString);
 
             }
+            //https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
+            adapter = new MyRecyclerViewAdapter(requireContext(), arrayList);
+            recyclerView.setAdapter(adapter);
         }
     }
+
+
 
     private static String convertStreamToString(InputStream is) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
