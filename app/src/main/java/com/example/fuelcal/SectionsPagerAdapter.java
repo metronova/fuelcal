@@ -17,7 +17,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.fuel_calculator_tab,
             R.string.Asda_price_tab,
-            R.string.Tesco_price_tab};
+            R.string.Tesco_price_tab,
+            R.string.Sainsburys_price_tab};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -41,6 +42,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         if(position == 3){
             return new TescoPriceFragment();
         }
+        if(position == 4){
+            return new SainsburysPriceFragment();
+        }
         return new Fragment();
     }
 
@@ -53,6 +57,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show # total pages.
-        return 3;
+        return 4;
     }
 }

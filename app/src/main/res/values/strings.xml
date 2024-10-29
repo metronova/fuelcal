@@ -22,5 +22,6 @@
     <string name="fuel_calculator_tab">Calculator</string>
     <string name="Asda_price_tab">Asda</string>
     <string name="Tesco_price_tab">Tesco</string>
+    <string name="Sainsburys_price_tab">Sainsbury’s</string>
 
 </resources>
