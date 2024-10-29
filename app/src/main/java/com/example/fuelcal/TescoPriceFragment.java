@@ -58,9 +58,9 @@ public class TescoPriceFragment extends Fragment {
     DownloadManager downloadManager;
     long downloadReference;
 
-    private final static String BUS_STOP_JSON_URL = "https://storelocator.asda.com/fuel_prices_data.json";
-    private final static String BUS_STOP_JSON_FILE_NAME = "asda/price_data";
-    private final static String BUS_STOP_JSON_FILE_TMP_NAME = "asda/price_data_tmp";
+    private final static String BUS_STOP_JSON_URL = "https://www.tesco.com/fuel_prices/fuel_prices_data.json";
+    private final static String BUS_STOP_JSON_FILE_NAME = "tesco/price_data";
+    private final static String BUS_STOP_JSON_FILE_TMP_NAME = "tesco/price_data_tmp";
     private final static String JSON_SUFFIX = ".json";
 
 
@@ -127,7 +127,7 @@ public class TescoPriceFragment extends Fragment {
 
 
         File filePath = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-        File file = new File(filePath, "asda/price_data");
+        File file = new File(filePath, BUS_STOP_JSON_FILE_NAME);
 
         if (file.exists()) {
             file.delete();
