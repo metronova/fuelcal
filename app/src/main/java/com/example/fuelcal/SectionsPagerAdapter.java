@@ -15,7 +15,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.fuel_calculator_tab, R.string.fuel_price_tab};
+    private static final int[] TAB_TITLES = new int[]{R.string.fuel_calculator_tab,
+            R.string.Asda_price_tab,
+            R.string.Tesco_price_tab};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -36,6 +38,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         if(position == 2){
             return new FuelPriceFragment();
         }
+        if(position == 3){
+            return new TescoPriceFragment();
+        }
         return new Fragment();
     }
 
@@ -47,7 +52,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 2;
+        // Show # total pages.
+        return 3;
     }
 }

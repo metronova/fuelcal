@@ -20,6 +20,7 @@
     </string-array>
     <string name="title_activity_main">MainActivity</string>
     <string name="fuel_calculator_tab">Calculator</string>
-    <string name="fuel_price_tab">Price</string>
+    <string name="Asda_price_tab">Asda</string>
+    <string name="Tesco_price_tab">Tesco</string>
 
 </resources>
